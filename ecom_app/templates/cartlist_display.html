@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>CART-ecom-eflyer-user</title>
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <script src="https://kit.fontawesome.com/f95d549ed4.js" crossorigin="anonymous"></script>
+
+    <style>
+        img {
+        height:300px;
+            }
+    </style>
+</head>
+<body class="body bg-danger" style="text-align:center;">
+<h1 style="color:white;font-size:35px">My Cart</h1>
+<h1 style="color:white;font-size:35px">My Cart: Total Price <span>{{totalprice}}</span></h1>
+<div class="card-group container" style="text-align:center;margin-left:auto;margin-right:auto;">
+    <div class="container row"  style="margin-left:auto;margin-right:auto;">
+        {% for i,j in cartlist_items %}
+        <center>
+            <div class="col-4" style="padding:3px;">
+                <div class="card" style="width: 20rem;height:42rem;border-radius:10px;">
+                    <img src="/static/{{j}}" class="card-img-top" alt="..." >
+                    <div class="card-body">
+                        <h5 style="font-size:25px;" class="card-title">{{i.prod_name}}</h5>
+                        <p class="card-text">{{i.prod_category}}</p>
+                        <p class="card-text">Price : <span>{{i.prod_price}}</span></p>
+                        <p class="card-text">{{i.prod_details}}</p>
+                        <form method="post" action="http://127.0.0.1:8000/ecom_app/e-com-1-user-cart-items/{{i.id}}">{% csrf_token %}
+                            <div class="input-group">
+                                <input type="number" name="prod_quantity"  value="{{i.prod_quantity}}" style="width:130px;">
+                                <div class="input-group-append">
+                            <span><button class="btn" type="submit" style="background-color: #f26522; border-color:#f26522;font-size:12px; ">
+                            <i class="fas fa-minus"></i><span>Add quantity</span><i class="fas fa-plus"></i>
+                            </button></span>
+                                </div>
+                            </div>
+                        </form>
+<!--                        <a href="#" class="btn btn-primary mt-5 float-left" style="padding:5px;">Buy Now</a>-->
+                        <a href="http://127.0.0.1:8000/ecom_app/e-com-1-delete-user-cart-items/{{i.id}}" class="float-right mt-5">Remove</a>
+                    </div>
+                </div>
+            </div>
+        </center>
+
+        {% endfor %}
+    </div>
+</div>
+<div class="proceed-buy">
+    <div class="container">
+        <a href="http://127.0.0.1:8000/ecom_app/e-com-1-buyer-proceed-to-buy-confirm-address-page-2/{{user_loginid}}">
+        <button class="btn bg-primary" style="width:100%;padding:10px;margin:20px;">Proceed to Buy</button>
+        </a>
+    </div>
+</div>
+</body>
+</html>

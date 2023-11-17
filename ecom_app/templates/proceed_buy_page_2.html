@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm your delivery address and items</title>
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <style>
+        button {
+            background-color:white;
+            padding:10px;
+                }
+    </style>
+    <script>
+        function address_confirmed(button) {
+        var b = button.closest('.address-line');
+        var x = b.querySelector('.address-line');
+        b.style.backgroundColor = 'yellow';
+        var y = b.querySelector('.payment-button');
+        y.style.display = 'block';
+
+            }
+    </script>
+
+</head>
+<body   style="text-align:center;">
+<div class="address-lines">
+    <div class="container-main" style="width:70%;margin-left:auto;margin-right:auto;padding:20px;">
+        <h1>Confirm your delivery address</h1>
+        {% for i in delivery_address %}
+        <div class="address-line container" style="background-color: #e6e6e6;margin:20px;padding:10px;">
+            <p><span>{{i.fullname}}, </span><br><span>{{i.addressline1}},</span><br>
+                <span>{{i.addressline2}}, </span><span>{{i.street}}, </span><br>
+                Pin code : <span>{{i.pin}}</span><br>Phone : <span>{{i.phone}}</span></p><br>
+            <a href="http://127.0.0.1:8000/ecom_app/e-com-1-buyer-edit-delivery-address/{{i.id}}"><button>Edit</button></a>
+            <a href="http://127.0.0.1:8000/ecom_app/e-com-1-buyer-delete-delivery-address/{{i.id}}"><button>Delete</button></a>
+            <button type="button" onclick="address_confirmed(this)">Confirm</button><br><br>
+             <div class="payment-button" id="payment-button"  style="display:none;">
+            <a href="http://127.0.0.1:8000/ecom_app/e-com-1-user-payment-details/{{i.id}}">
+                <button class="btn bg-primary" style="width:100%;padding:10px;position:sticky;">Proceed Payment</button>
+            </a>
+        </div>
+
+        </div>
+        <div class="float-right"><a href="http://127.0.0.1:8000/ecom_app/e-com-1-buyer-proceed-to-buy-items-page-1/{{i.user_loginid}}">+ Add New Address</a></div><br><br>
+
+        {% endfor %}
+
+
+    </div>
+</div>
+<script>
+
+    function hide_show() {
+        var p = getElementById('payment-button');
+        if (p.style.display == "none") {
+                p.style.display == "block";
+                }
+        else {
+           p.style.display == "none";
+           }
+           }
+</script>
+</body>
+</html>

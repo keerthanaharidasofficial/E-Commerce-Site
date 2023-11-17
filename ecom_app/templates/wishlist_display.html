@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist-Eflyer-user</title>
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <style>
+        img {
+        height:300px;
+            }
+    </style>
+</head>
+<body class="body bg-danger" style="text-align:center;">
+<h1 style="color:white;font-size:35px">Wishlist</h1>
+<div class="card-group container" style="text-align:center;margin-left:auto;margin-right:auto;">
+    <div class="container row"  style="margin-left:auto;margin-right:auto;">
+        {% for i,j in wishlist_items %}
+        <center>
+            <div class="col-12" style="padding:3px;">
+                <div class="card" style="width: 20rem;height:35rem;border-radius:10px;">
+                    <img src="/static/{{j}}" class="card-img-top" alt="..." >
+                    <div class="card-body">
+                        <h5 style="font-size:25px;" class="card-title">{{i.prod_name}}</h5>
+                        <p class="card-text">{{i.prod_category}}</p>
+                        <p class="card-text">{{i.prod_details}}</p>
+                        <a href="http://127.0.0.1:8000/ecom_app/e-com-1-user-cart-items/{{i.prod_id}}" class="btn btn-primary">Add to cart</a>
+                        <a href="http://127.0.0.1:8000/ecom_app/e-com-1-delete-user-wishlist-items/{{i.id}}" class="float-right">Remove</a>
+                    </div>
+                </div>
+            </div>
+        </center>
+
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

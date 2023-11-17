@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>User-Payment-page-to-proceed-to buy</title>
+
+     <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <script src="https://kit.fontawesome.com/f95d549ed4.js" crossorigin="anonymous"></script>
+    <style>
+        input{
+        padding:10px;
+        margin:10px;
+            }
+        form {
+        padding:20px;
+            }
+        .container {
+            padding:50px;
+            margin:60px;
+                }
+        h1 {
+        color:white;
+        font-weight:bold;
+            }
+        button {
+            padding:5px;
+            width:200px;
+            margin:20px;
+                }
+        body {
+            color:black;
+                }
+    </style>
+</head>
+<body>
+  <div class="main-page">
+      <center>
+    <div class="container bg-danger">
+      <form method="post" action="">{% csrf_token %}
+          <h1>Add Payment Details</h1>
+          Card Number &emsp;: <input type="text" name="cardnum" placeholder="xxxx xxxx xxxx" pattern="[0-9]{12}" required><br>
+          card Holder&emsp;&emsp;&emsp;: <input type="text" name="cardholder" required><br>
+          Cvv&emsp;: <input type="text" name="cvv" pattern="[0-9]{3}" required>&emsp;
+          Exp&emsp;&emsp;: <input type="text" name="exp" placeholder="XX/XX" pattern="[0-9]{1,2}/[0-9]{1,2}" required><br>
+          <button class="btn btn-primary" type="submit">Confirm Payment</button>
+      </form>
+    </div>
+    </center>
+  </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eflyr Edit-Page-Seller-Product-details-Uploading</title>
+    <style>
+    body{
+    background:linear-gradient(#fff5e6,white, #ffe0b3
+);
+    }
+        .navbar{
+        background-color:tomato;
+        height:100px;
+        width:100%;
+        }
+        .navbar-brand{
+        font-weight:bold;
+        font-size:50px;
+        float:left;
+        margin-left:30px;
+        color:white;
+        text-decoration-line:none;
+        }
+        .navbar-brand:hover{
+        color:yellow;
+        }
+        h1{
+        color:white;
+        text-align:center;
+        padding-top:10px;
+        }
+        div{
+    text-align:center;
+        }
+        form{
+        font-weight: bold;
+        padding:50px;
+        }
+        button{
+        width:150px;
+        height:100px;
+        background-color:tomato;
+        color:white;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="http://127.0.0.1:8000/ecom_app/e-commerce-1-index-page/">
+        Eflyr
+    </a>
+    <h1>MY PRODUCT - EDIT DATA</h1>
+</nav>
+<div>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+<!--        enctype : to encrypt file fields in html <form>-->
+        <label>Product Name : </label>
+        <input type="text" name="prod_name" placeholder="" value="{{seller_prod.prod_name}}">
+        <label>Product Image : </label>
+        <input type="file" name="imgfile" placeholder="Product image"><br>
+        <br>
+        <label>Product Category : </label>
+        <select name="prod_category" id="prod_category" >
+            <option value="{{seller_prod.prod_category}}">--Select Category--</option>
+            <optgroup label="fashion">
+                <option value="women's">Women's</option>
+                <option value="men's">Men's</option>
+                <option value="kid's">Kid's</option>
+            </optgroup>
+            <optgroup label="jewellery">
+                <option value="necklace">Necklace</option>
+                <option value="jumka">Jumka</option>
+                <option value="kangan">Kangan</option>
+            </optgroup>
+        </select>        <br><br>
+        <label>Product Size : </label>
+        <input type="text" name="prod_size" placeholder=""value="{{seller_prod.prod_size}}">
+        <br><br>
+        <label>Product Price : </label>
+        <input type="number" name="prod_price" value="{{seller_prod.prod_price}}">
+        <br><br>
+        <textarea name="prod_details" rows="15" cols="50" >{{seller_prod.prod_details}}</textarea>
+<!--        <button type="button" onclick="img()">image</button>-->
+        <br><br>
+        <button type="submit" name="submit-btn">UPDATE</button>
+
+    </form>
+</div>
+</body>
+</html>

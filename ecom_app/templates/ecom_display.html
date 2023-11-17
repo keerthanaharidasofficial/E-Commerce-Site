@@ -1,0 +1,219 @@
+
+<!------------------------- Intend   Ctrl+Alt+I------------------->
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>display database</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+    img {
+    max-width: 100%;
+    height: auto;
+}
+
+    .navbar-brand{
+        font-weight:bold;
+        font-size:50px;
+        float:left;
+        margin-left:30px;
+        border:1px solid;
+        border-radius:40%;
+        }
+        .navbar-brand:hover{
+        background-color:yellow;
+        }
+    .tbl-center{
+    margin-left:auto;
+    margin-right:auto;
+    }
+    table,th,td{
+            width:15px;
+            height:55px;
+            }
+        th{
+        background-color:yellowgreen;
+        }
+        td:nth-child(even){
+        background-color:yellow;
+        }
+        table, th, td {
+          border: .1px solid black;
+          border-radius: 11px;
+        }
+    .file_path{
+    padding:120px;
+    }
+    img{
+    height:250px;
+    }
+    video{
+    width:300px;height:300px;
+    }
+    .col3{
+    width:70%;height:5rem;padding-right:10px;
+    background-color:yellow;
+    }
+
+
+
+    </style>
+</head>
+<body style="text-align:center;">
+<!--&lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;EMPLOYEE REGISTRATION DETAILS DISPLAY-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+
+<!--------------REGISTRATION DETAILS DISPLAY-------------------------------------->
+<h3>------------------------SELLER REGISTER DATA---------------------------
+</h3>
+<a class="navbar-brand" href="http://127.0.0.1:8000/ecom_app/e-commerce-1-index-page/">
+    <div>Eflyr</div>
+</a>
+<table class="tbl-center">
+    <tr>
+        <th>Id</th>
+        <th>FIRST NAME</th>
+        <th>LAST NAME</th>
+        <th>EMAIL</th>
+        <th>CONTACT</th>
+        <th>GENDER</th>
+        <th>ADDRESS</th>
+        <th>USERNAME</th>
+        <th>PROFILE PHOTO</th>
+
+        <th>EDIT PROFILE</th>
+        <th>DELETE PROFILE</th>
+    </tr>
+    {% for i,j in ecom_seller_reg_key %}
+    <tr>
+        <td>{{i.id}}</td>   <!-- double curly bracket method is interpolation , used for iterating data -->
+        <td>{{i.fname}}</td>
+        <td>{{i.lname}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone}}</td>
+        <td>{{i.gender}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.uname}}</td>
+        <td>{{i.imgfile}}
+            <img src="/static/{{j}}">
+        </td>
+        <td><a href="http://127.0.0.1:8000/ecom_app/e-com-1-edit-seller-register-data/{{i.id}}" class="btn btn-primary">Edit</a> </td>
+        <td><a href="http://127.0.0.1:8000/ecom_app/e-com-1-delete-seller-register-data/{{i.id}}" class="btn btn-primary">Delete</a> </td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+<h3 style="padding:20px;">------------------------SELLER PRODUCTS DETAILS---------------------------
+</h3>
+<table class="tbl-center">
+    <tr>
+        <th>Id</th>
+        <th>PRODUCT NAME</th>
+        <th>PRODUCT PHOTO</th>
+        <th>PRODUCT CATEGORY</th>
+        <th>PRODUCT SIZE</th>
+        <th>PRODUCT PRICE</th>
+        <th>PRODUCT DETAILS</th>
+        <th>EDIT PRODUCT</th>
+        <th>{{seller_prod_data}}</th>
+    </tr>
+    {% for i,j in seller_prod_data %}
+    <tr>
+        <td>{{i.id}}</td>   <!-- double curly bracket method is interpolation , used for iterating data -->
+        <td>{{i.prod_name}}</td>
+        <td>{{i.imgfile}}<br>
+            <img src="/static/{{j}}">
+        </td>
+        <td>{{i.prod_category}}</td>
+        <td>{{i.prod_size}}</td>
+        <td>{{i.prod_price}}</td>
+        <td>{{i.prod_details}}</td>
+        <td><a href="http://127.0.0.1:8000/ecom_app/e-com-1-edit-seller-product-data/{{i.id}}" class="btn btn-primary">Edit</a> </td>
+        <td><a href="http://127.0.0.1:8000/ecom_app/e-com-1-delete-seller-product-data/{{i.id}}" class="btn btn-primary">Delete</a> </td>
+
+    </tr>
+    {% endfor %}
+</table><br><br>
+
+<h3 style="padding:20px;">------------------------WISHLIST ITEMS DETAILS---------------------------
+</h3>
+<table class="tbl-center">
+    <tr>
+        <th>Id</th>
+        <th>PRODUCT Id</th>
+        <th>PRODUCT NAME</th>
+        <th>PRODUCT PHOTO</th>
+        <th>PRODUCT CATEGORY</th>
+        <th>PRODUCT SIZE</th>
+        <th>PRODUCT PRICE</th>
+        <th>PRODUCT DETAILS</th>
+        <th>EDIT PRODUCT</th>
+        <th>USER ID</th>
+    </tr>
+    {% for i,j in wishlist %}
+    <tr>
+        <td>{{i.id}}</td>   <!-- double curly bracket method is interpolation , used for iterating data -->
+        <td>{{i.prod_id}}</td>
+        <td>{{i.prod_name}}</td>
+        <td>{{i.imgfile}}<br>
+            <img src="/static/{{j}}">
+        </td>
+        <td>{{i.prod_category}}</td>
+        <td>{{i.prod_size}}</td>
+        <td>{{i.prod_price}}</td>
+        <td>{{i.prod_details}}</td>
+        <td>{{i.user_loginid}}</td>
+<!--        <td><a href="http://127.0.0.1:8000/ecom_app/e-com-1-edit-seller-product-data/{{i.id}}" class="btn btn-primary">Edit</a> </td>-->
+        <td><a href="http://127.0.0.1:8000/ecom_app/e-com-1-delete-user-wishlist-items/{{i.id}}" class="btn btn-primary">Delete</a> </td>
+
+    </tr>
+    {% endfor %}
+</table><br><br>
+
+<h3 style="padding:20px;">------------------------CART ITEMS DETAILS---------------------------
+</h3>
+<table class="tbl-center">
+    <tr>
+        <th>Id</th>
+        <th>PRODUCT Id</th>
+        <th>PRODUCT NAME</th>
+        <th>PRODUCT PHOTO</th>
+        <th>PRODUCT CATEGORY</th>
+        <th>PRODUCT SIZE</th>
+        <th>PRODUCT PRICE</th>
+        <th>PRODUCT DETAILS</th>
+        <th>USER ID</th>
+        <th>PRODUCT QUANTITY</th>
+<!--        <th>EDIT PRODUCT</th>-->
+
+    </tr>
+    {% for i,j in cartlist %}
+    <tr>
+        <td>{{i.id}}</td>   <!-- double curly bracket method is interpolation , used for iterating data -->
+        <td>{{i.prod_id}}</td>
+        <td>{{i.prod_name}}</td>
+        <td>{{i.imgfile}}<br>
+            <img src="/static/{{j}}">
+        </td>
+        <td>{{i.prod_category}}</td>
+        <td>{{i.prod_size}}</td>
+        <td>{{i.prod_price}}</td>
+        <td>{{i.prod_details}}</td>
+        <td>{{i.user_loginid}}</td>
+        <td>{{i.prod_quantity}}</td>
+<!--        <td><a href="http://127.0.0.1:8000/ecom_app/e-com-1-edit-seller-product-data/{{i.id}}" class="btn btn-primary">Edit</a> </td>-->
+<!--        <td><a href="http://127.0.0.1:8000/ecom_app/e-com-1-delete-user-wishlist-items/{{i.id}}" class="btn btn-primary">Delete</a> </td>-->
+
+    </tr>
+    {% endfor %}
+</table><br><br>
+
+</body>
+</html>

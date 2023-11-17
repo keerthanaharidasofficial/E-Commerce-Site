@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>My ecom-Profile page</title>
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<style>
+	.flex{
+	display:flex;
+	}
+		.page-1{
+		margin-left:auto;margin-right:auto;
+		width:90%;
+		height:500px;
+		text-align:center;
+		padding:100px;
+
+		}
+		.page-1-1{
+		margin-left:auto;margin-right:auto;
+		width:90%;
+		height:450px;
+		text-align:center;
+		padding:50px;
+<!--		background-color:#e6fffa;-->
+		}
+		.profile-img{
+		margin-left:auto;margin-right:auto;
+		width:200px;height:200px;
+		background-color:white;
+		border:1px solid;
+		border-radius:50%;
+		}
+		.profile-img img{
+		margin-left:auto;margin-right:auto;
+		width:200px;height:200px;
+		border-radius:50%;
+		}
+		.page-2{
+		padding:40px;
+		}
+		.page-2-1{
+		margin-left:auto;margin-right:auto;
+		width:700px;height:500px;
+		}
+		.card-group{
+		padding:10px;
+		}
+		.card{
+		background-color:  #ffdd99;
+		width:200px;height:200px;
+		border:0px solid;
+		border-radius:60px;
+		padding:20px;
+		margin:10px;
+		text-align:center;
+		}
+		.card h2{
+		padding:50px;
+		}
+		.card:hover{
+		background-color:white;
+		}
+			.page {
+			 background:url('/static/images/banner-bg.png');
+
+			 }
+	</style>
+</head>
+<body>
+
+		<h2>As Seller</h2>
+		<div class="page">
+					<div class="page-1-1">
+
+							<div class="profile-img">
+<!--								<img src="{% static 'images/computer-img.png' %}">-->
+								<img src="/static/{{imgfile}}">
+
+							</div>
+							<div>
+								<h1>{{seller_profile.fname}} {{seller_profile.lname}}</h1>
+								<h2>{{seller_profile.address}}</h2>
+								<h3>Email      : {{seller_profile.email}}</h3>
+								<h3>Contact No : {{seller_profile.phone}}</h3>
+							</div>
+					</div>
+<!--		</div>-->
+<!--<div class="page-2">-->
+					<div class="page-2-1">
+						<div class="card-group flex">
+							<a href="http://127.0.0.1:8000/ecom_app/e-commerce-1-index-page/" style="text-decoration-line:none;color:black;">
+							<div class="card card-1">
+									<h2>Home</h2>
+							</div>
+							</a>
+							<a href="#" style="text-decoration-line:none;color:black;">
+							<div class="card card-2">
+								<h2>About</h2>
+							</div>
+							</a>
+							<a href="http://127.0.0.1:8000/ecom_app/e-com-1-edit-seller-register-data/{{seller_profile.id}}" style="text-decoration-line:none;color:black;">
+							<div class="card card-3">
+								<h2>Edit Profile</h2>
+							</div>
+							</a>
+						</div>
+						<div class="card-group flex">
+							<a href="http://127.0.0.1:8000/ecom_app/e-com-1-products-display-page/{{seller_profile.id}}" style="text-decoration-line:none;color:black;">
+							<div class="card card-1">
+								<h2>My Products</h2>
+							</div>
+							</a>
+							<a href="http://127.0.0.1:8000/ecom_app/e-com-1-upload-seller-products-details/{{seller_profile.id}}" style="text-decoration-line:none;color:black;">
+							<div class="card card-2">
+								<h2>Upload Products</h2>
+							</div>
+							</a>
+							<a href="http://127.0.0.1:8000/ecom_app/e-com-1-eflyer--profile-page-seller-logout/" style="text-decoration-line:none;color:black;">
+							<div class="card card-3">
+								<h2>Logout</h2>
+							</div>
+							</a>
+						</div>
+					</div>
+
+		</div>
+<!-- footer section start -->
+      <div class="footer_section layout_padding">
+         <div class="container">
+            <div class="footer_logo"><a href="http://127.0.0.1:8000/ecom_app/e-commerce-1-index-page/"><img src="{% static 'images/footer-logo.png' %}"></a></div>
+            <div class="input_bt">
+               <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
+               <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
+            </div>
+            <div class="footer_menu">
+               <ul>
+                  <li><a href="#">Best Sellers</a></li>
+                  <li><a href="#">Gift Ideas</a></li>
+                  <li><a href="#">New Releases</a></li>
+                  <li><a href="#">Today's Deals</a></li>
+                  <li><a href="#">Customer Service</a></li>
+               </ul>
+            </div>
+            <div class="location_main">Help Line  Number : <a href="#">+1 1800 1200 1200</a></div>
+         </div>
+      </div>
+      <!-- footer section end -->
+
+</body>
+</html>
